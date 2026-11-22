@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "source": {
+    "repository": "https://github.com/Mesh2Motion/mesh2motion-app",
+    "ref": "main",
+    "commit": "017169ae6f7574d8fa75d893c38c2776386ca40b",
+    "commit_url": "https://github.com/Mesh2Motion/mesh2motion-app/commit/017169ae6f7574d8fa75d893c38c2776386ca40b",
+    "description": "Pinned Mesh2Motion app assets. Only the human skeleton and a starter set of animation clips are vendored; no application code or other art is fetched."
+  },
+  "files": [
+    {
+      "path": "static/assets/human/skeleton.glb",
+      "sha256": "1784d9aa20e24dee3233d97a8ac2f2e0d72cc74f0692b44fcded87d2d3e33f9c",
+      "size": 18688,
+      "url": "https://raw.githubusercontent.com/Mesh2Motion/mesh2motion-app/017169ae6f7574d8fa75d893c38c2776386ca40b/static/assets/human/skeleton.glb"
+    },
+    {
+      "path": "static/assets/human/model.glb",
+      "sha256": "bce15f56f0ca4daf4e085337b2412116ab18d3165cb51ea672d1cb9f1194b37f",
+      "size": 531504,
+      "url": "https://raw.githubusercontent.com/Mesh2Motion/mesh2motion-app/017169ae6f7574d8fa75d893c38c2776386ca40b/static/assets/human/model.glb"
+    },
+    {
+      "path": "static/assets/human/animations/walk.glb",
+      "sha256": "c961d6dd99856f597ef6f4d986260b5636fb55e8132ff6d0a3765cd8a34aeef1",
+      "size": 62692,
+      "url": "https://raw.githubusercontent.com/Mesh2Motion/mesh2motion-app/017169ae6f7574d8fa75d893c38c2776386ca40b/static/assets/human/animations/walk.glb"
+    },
+    {
+      "path": "static/assets/human/animations/idle-a.glb",
+      "sha256": "87b14d162867d6448bdf4f3e854e7fbd2901bcabafcc45aa06b64590c88eec15",
+      "size": 61684,
+      "url": "https://raw.githubusercontent.com/Mesh2Motion/mesh2motion-app/017169ae6f7574d8fa75d893c38c2776386ca40b/static/assets/human/animations/idle-a.glb"
+    },
+    {
+      "path": "static/assets/human/animations/run-anime.glb",
+      "sha256": "9a4009a6133fdb30839e256c15ca83123e2124f33374753c811ebd87589b9a45",
+      "size": 59432,
+      "url": "https://raw.githubusercontent.com/Mesh2Motion/mesh2motion-app/017169ae6f7574d8fa75d893c38c2776386ca40b/static/assets/human/animations/run-anime.glb"
+    },
+    {
+      "path": "static/assets/human/animations/jump-2.glb",
+      "sha256": "a76a0842d3f55e9da82a72fdec28e5f56a73311bdfe0b5ede364cc3eeae1d61b",
+      "size": 60588,
+      "url": "https://raw.githubusercontent.com/Mesh2Motion/mesh2motion-app/017169ae6f7574d8fa75d893c38c2776386ca40b/static/assets/human/animations/jump-2.glb"
+    }
+  ]
+}
