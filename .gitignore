@@ -1,5 +1,6 @@
 # Generated binaries and scratch
 out/
+out-e2e/
 work/
 vendor/bin/
 *.blend
@@ -12,7 +13,8 @@ __pycache__/
 # Local state and reports from experiments
 local/
 
-# Test/CI artifacts
-reports/
+# Test/CI artifacts (per-build reports JSON is tracked)
+reports/*
+!reports/*.json
 .tools/
 *.log

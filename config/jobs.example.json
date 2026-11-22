@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "characters": [
+    {
+      "name": "hero",
+      "model": "models/hero.glb",
+      "clips": ["idle-a", "walk", "run-anime", "jump-2"],
+      "profile": "m2m-human",
+      "fit": "config/fit/hero.json"
+    },
+    {
+      "name": "guard",
+      "model": "models/guard.glb",
+      "clips": ["idle-a", "walk"],
+      "profile": "polygon_humanoid"
+    }
+  ]
+}
