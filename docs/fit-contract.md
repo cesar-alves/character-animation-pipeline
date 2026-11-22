@@ -170,7 +170,7 @@ semantics to some chains. The profile resolves every gap deterministically:
 | **Eyes / Eyebrows / Jaw** | M2M has no equivalents. The three bones exist in the Godot rig with no tracks and stay at their rest transforms. |
 | **Head leaf** | `head_leaf` has no target and is dropped after its parent `head` is mapped. |
 | **Fifth finger chains** | M2M has five chains per hand (`thumb`, `index`, `middle`, `ring`, `pinky`); `polygon_humanoid` has only `Thumb`, `IndexFinger` and `Finger`. `index_*` → `IndexFinger_*`, `middle_*` → `Finger_*`. `ring_*` and `pinky_*` are dropped and their channels discarded: the Godot rig has a single bone group for the three non-index fingers. |
-| **Thumb leaf** | M2M thumbs have four joints; the target has three. `thumb_04_leaf_*` is folded into `Thumb_03_*` (its rotation is applied to the last thumb bone), not silently dropped. |
+| **Thumb leaf** | M2M thumbs have four joints; the target has three. `thumb_04_leaf_*` is dropped by the `polygon_humanoid` profile (like `head_leaf`, `ring_*` and `pinky_*`); no target bone exists for it. |
 
 Note on the pinned file: the raw `skeleton.glb` does contain `root`,
 `clavicle_l/r`, `ball_l/r` and `*_leaf` joints, and the stock clips animate
@@ -188,10 +188,15 @@ auto-fit and uses metres in the normalized model frame:
 
 ```json
 {
+  "schema_version": 1,
+  "model": "models/foo.glb",
+  "profile": "m2m-human",
+  "global": { "uniform_scale": 1.0, "offset": [0.0, 0.0, 0.0], "yaw_degrees": 0.0 },
   "bones": {
-    "pelvis": { "head": [0.0, 0.95, 0.0], "tail": [0.0, 1.05, 0.0] },
-    "upperarm_l": { "tail": [0.42, 1.32, 0.0] }
-  }
+    "pelvis": { "head": [0.0, 0.95, 0.0], "tail": [0.0, 1.05, 0.0], "roll": 0.0 },
+    "upperarm_l": { "tail": [0.42, 1.32, 0.0], "roll": 0.0 }
+  },
+  "notes": ""
 }
 ```
 
@@ -199,17 +204,24 @@ Rules:
 
 - The path is relative to the repository root and is optional. Without it the
   auto-fit result is used unchanged.
+- `head` and `tail` are `[x, y, z]` in **Y-up metres**, feet at `Y = 0`, and are
+  converted to Blender with `(x, y, z) -> (x, -z, y)`.
 - Only listed bones are modified. Unlisted bones keep their auto-fitted
-  positions.
-- You may specify `head`, `tail`, or both. Values are `[x, y, z]` in metres.
+  positions. You may specify `head`, `tail`, `roll`, or any subset.
+- `roll` is the Blender `EditBone.roll` in **radians**, copied verbatim from the
+  M2M rest pose. Its axis is invariant under the Y-up conversion; changing it
+  would twist every transplanted clip, so preserve it exactly.
+- `global` is informational: its scale and offset are already baked into each
+  bone's `head`/`tail` and must **not** be re-applied. `yaw_degrees` is reserved
+  and is currently always `0.0`.
 - Moving a parent translates its whole subtree; the relative offsets of
   descendants are preserved.
-- **Roll is never overridden.** The vector from `head` to `tail` defines the
-  bone direction; the bone's local twist is inherited from the M2M rest pose.
-  Any override that would change roll must be rejected by the fit stage,
-  because a direct action transplant cannot survive roll changes.
 - Overrides are keyed by **M2M bone names**, even when the output profile is
   `polygon_humanoid`, because fitting happens before name mapping.
+
+`tools/fit.py --interactive` generates a starting config with all 66 bones;
+artists then edit positions in Blender. See
+[`interactive-fit.md`](interactive-fit.md) for the workflow.
 
 Use `--fit <model.glb> --interactive` to generate a starting point for this
 file; see the quick start in the [README](../README.md).
