@@ -2,9 +2,9 @@
   "schema_version": 1,
   "pipeline_version": "0.1.0",
   "name": "e2e-hero",
-  "generated_at": "2026-11-22T12:25:58.673396Z",
+  "generated_at": "2026-11-22T12:30:47.890432Z",
   "model": {
-    "path": "/home/drexer/Projects/cesar-alves/character-animation-pipeline/core/vendor/bin/model.glb",
+    "path": "/home/drexer/Projects/cesar-alves/character-animation-pipeline/interactive/vendor/bin/model.glb",
     "sha256": "bce15f56f0ca4daf4e085337b2412116ab18d3165cb51ea672d1cb9f1194b37f"
   },
   "profile": "m2m-human",
@@ -14,12 +14,12 @@
   ],
   "clips": {
     "walk": {
-      "path": "/home/drexer/Projects/cesar-alves/character-animation-pipeline/core/vendor/bin/walk.glb",
+      "path": "/home/drexer/Projects/cesar-alves/character-animation-pipeline/interactive/vendor/bin/walk.glb",
       "sha256": "c961d6dd99856f597ef6f4d986260b5636fb55e8132ff6d0a3765cd8a34aeef1",
       "size": 62692
     },
     "idle-a": {
-      "path": "/home/drexer/Projects/cesar-alves/character-animation-pipeline/core/vendor/bin/idle-a.glb",
+      "path": "/home/drexer/Projects/cesar-alves/character-animation-pipeline/interactive/vendor/bin/idle-a.glb",
       "sha256": "87b14d162867d6448bdf4f3e854e7fbd2901bcabafcc45aa06b64590c88eec15",
       "size": 61684
     }
@@ -82,7 +82,7 @@
     "errors": []
   },
   "vendor": {
-    "dir": "/home/drexer/Projects/cesar-alves/character-animation-pipeline/core/vendor/bin",
+    "dir": "/home/drexer/Projects/cesar-alves/character-animation-pipeline/interactive/vendor/bin",
     "files": {
       "idle-a": {
         "file": "idle-a.glb",

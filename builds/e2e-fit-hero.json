@@ -1,0 +1,122 @@
+{
+  "schema_version": 1,
+  "pipeline_version": "0.1.0",
+  "name": "e2e-fit-hero",
+  "generated_at": "2026-11-22T12:41:54.901492Z",
+  "model": {
+    "path": "/home/drexer/Projects/cesar-alves/character-animation-pipeline/interactive/vendor/bin/model.glb",
+    "sha256": "bce15f56f0ca4daf4e085337b2412116ab18d3165cb51ea672d1cb9f1194b37f"
+  },
+  "profile": "m2m-human",
+  "clips_requested": [
+    "walk",
+    "idle-a"
+  ],
+  "clips": {
+    "walk": {
+      "path": "/home/drexer/Projects/cesar-alves/character-animation-pipeline/interactive/vendor/bin/walk.glb",
+      "sha256": "c961d6dd99856f597ef6f4d986260b5636fb55e8132ff6d0a3765cd8a34aeef1",
+      "size": 62692
+    },
+    "idle-a": {
+      "path": "/home/drexer/Projects/cesar-alves/character-animation-pipeline/interactive/vendor/bin/idle-a.glb",
+      "sha256": "87b14d162867d6448bdf4f3e854e7fbd2901bcabafcc45aa06b64590c88eec15",
+      "size": 61684
+    }
+  },
+  "fit": {
+    "path": "/home/drexer/Projects/cesar-alves/character-animation-pipeline/interactive/work/e2e-fit.json",
+    "sha256": "a0eae660713c9f96877962077552bd9a3343121df45765fd45f49ebf68ba5c31"
+  },
+  "bone_count": 66,
+  "exporter_settings": {
+    "export_animation_mode": "ACTIONS",
+    "export_nla_strips": false,
+    "export_anim_single_armature": false,
+    "export_def_bones": true,
+    "export_yup": true,
+    "use_selection": true,
+    "export_apply": true
+  },
+  "validation_summary": {
+    "ok": true,
+    "checks": [
+      {
+        "name": "single_skin",
+        "ok": true,
+        "detail": "found 1 skin(s)"
+      },
+      {
+        "name": "skinned_mesh",
+        "ok": true,
+        "detail": "1 skinned mesh primitive(s)"
+      },
+      {
+        "name": "bones_present",
+        "ok": true,
+        "detail": "66 bone(s)"
+      },
+      {
+        "name": "no_cameras_lights",
+        "ok": true,
+        "detail": "none found"
+      },
+      {
+        "name": "clips_present",
+        "ok": true,
+        "detail": "2 requested clip(s) present"
+      },
+      {
+        "name": "profile_bones",
+        "ok": true,
+        "detail": "no profile requested"
+      },
+      {
+        "name": "root_translation_constant",
+        "ok": true,
+        "detail": "2 root translation channel(s) constant"
+      }
+    ],
+    "clips": [
+      "idle-a",
+      "walk"
+    ],
+    "bones": 66,
+    "errors": []
+  },
+  "vendor": {
+    "dir": "/home/drexer/Projects/cesar-alves/character-animation-pipeline/interactive/vendor/bin",
+    "files": {
+      "idle-a": {
+        "file": "idle-a.glb",
+        "sha256": "87b14d162867d6448bdf4f3e854e7fbd2901bcabafcc45aa06b64590c88eec15",
+        "size": 61684
+      },
+      "jump-2": {
+        "file": "jump-2.glb",
+        "sha256": "a76a0842d3f55e9da82a72fdec28e5f56a73311bdfe0b5ede364cc3eeae1d61b",
+        "size": 60588
+      },
+      "model": {
+        "file": "model.glb",
+        "sha256": "bce15f56f0ca4daf4e085337b2412116ab18d3165cb51ea672d1cb9f1194b37f",
+        "size": 531504
+      },
+      "run-anime": {
+        "file": "run-anime.glb",
+        "sha256": "9a4009a6133fdb30839e256c15ca83123e2124f33374753c811ebd87589b9a45",
+        "size": 59432
+      },
+      "skeleton": {
+        "file": "skeleton.glb",
+        "sha256": "1784d9aa20e24dee3233d97a8ac2f2e0d72cc74f0692b44fcded87d2d3e33f9c",
+        "size": 18688
+      },
+      "walk": {
+        "file": "walk.glb",
+        "sha256": "c961d6dd99856f597ef6f4d986260b5636fb55e8132ff6d0a3765cd8a34aeef1",
+        "size": 62692
+      }
+    }
+  }
+}
