@@ -130,10 +130,16 @@ round it to degrees or drop it.
   `bpy.types.Operator` and `bl_property` file-path string properties.
 - `tools/fit.py` is stdlib-only and never imports `bpy`.
 - The prepared `.blend` contains exactly one model (static meshes, world
-  transforms baked in, armature modifiers removed) and one armature. The
-  debug Icosphere shipped in the skeleton GLB and any armature that came
-  with the model are removed. Armature object transform is identity; all
-  fitting is baked into edit bones.
+  transforms baked in, armature modifiers removed) and one armature. Custom
+  bone-shape meshes are detected through `pose.bones[].custom_shape` and
+  removed for **both** the model and skeleton GLBs. This matters: the pinned
+  `human/model.glb` also ships a debug `Icosphere`, and including it in the
+  mesh bounds inflates the measured height from 1.8296 m to 2.8292 m and the
+  fit scale from 1.1249 to 1.7395. Armature object transform is identity;
+  all fitting is baked into edit bones.
+- `tests/e2e_fit.sh` covers the whole hand-off against the pinned CC0 assets:
+  generate a config with `tools/fit.py`, consume it in `pipeline.py`, and
+  validate the exported GLB. It reports `E2E_FIT_OK`.
 - The armature carries `m2m_rest_bones_json` (the pristine template pose) so
   "Auto Fit Again" can truly reset; scene ID props `m2m_fit_config_path`,
   `m2m_fit_armature_name`, `m2m_fit_interactive` are also written.

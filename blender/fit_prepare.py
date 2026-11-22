@@ -128,6 +128,24 @@ def leave_edit():
         bpy.ops.object.mode_set(mode="OBJECT")
 
 
+def bone_shape_objects():
+    """Find meshes used as custom bone shapes by any imported armature.
+
+    Mesh2Motion rigs ship an ``Icosphere`` custom shape. Blender's glTF importer
+    materialises it as a real (untextured) mesh object, so a naive "all imported
+    meshes" selection would include it in the model bounds and inflate the
+    measured height. Those helpers are never visual character geometry.
+    """
+    shapes = set()
+    for arm in bpy.data.objects:
+        if arm.type != "ARMATURE":
+            continue
+        for pb in arm.pose.bones:
+            if pb.custom_shape is not None:
+                shapes.add(pb.custom_shape)
+    return shapes
+
+
 def find_skeleton_armature(objects):
     candidates = [o for o in objects if o.type == "ARMATURE"]
     if not candidates:
@@ -398,13 +416,16 @@ def main():
     bpy.ops.object.delete(use_global=False)
 
     model_objs = import_glb(model_path)
-    model_meshes = [o for o in model_objs if o.type == "MESH"]
+    model_shapes = bone_shape_objects()
+    model_meshes = [o for o in model_objs if o.type == "MESH" and o not in model_shapes]
     if not model_meshes:
-        raise RuntimeError("model GLB contains no mesh")
-    # Remove any armature that came with the model: this step fits the M2M rig.
+        raise RuntimeError("model GLB contains no visual (non-bone-shape) mesh")
+    # Remove any armature and custom bone shapes that came with the model: this
+    # step fits the M2M rig, and bone shapes must not contribute to bounds.
     for o in model_objs:
-        if o.type == "ARMATURE":
-            bpy.data.objects.remove(o, do_unlink=True)
+        if o.type == "ARMATURE" or o in model_shapes:
+            if o.name in bpy.data.objects:
+                bpy.data.objects.remove(o, do_unlink=True)
 
     skeleton_objs = import_glb(skeleton_path)
     arm = find_skeleton_armature(skeleton_objs)
