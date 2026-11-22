@@ -1,0 +1,18 @@
+{
+  "host": "linux-x86_64 12c",
+  "measured_at": "2026-11-22T12:59:05Z",
+  "segments": {
+    "unit": {
+      "duration_s": 0.1,
+      "exit": 0
+    },
+    "e2e-batch": {
+      "duration_s": 2.3,
+      "exit": 0
+    },
+    "e2e-fit": {
+      "duration_s": 3.1,
+      "exit": 0
+    }
+  }
+}
