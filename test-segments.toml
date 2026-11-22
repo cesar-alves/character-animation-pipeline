@@ -1,0 +1,67 @@
+[meta]
+reference_host = "linux-x86_64 container (Python 3, Blender 5.2 headless)"
+universe = ["python3", "-c", '''
+import unittest
+def flatten(suite):
+    for item in suite:
+        if isinstance(item, unittest.TestSuite):
+            yield from flatten(item)
+        else:
+            yield item
+for test in flatten(unittest.defaultTestLoader.discover("tests")):
+    print(test.id())
+print("tests/e2e.sh")
+print("tests/e2e_fit.sh")
+''']
+
+[[segment]]
+id = "unit"
+title = "Unit tests"
+kind = "test"
+run = ["python3", "-m", "unittest", "discover", "-s", "tests", "-v"]
+list = ["python3", "-c", '''
+import unittest
+def flatten(suite):
+    for item in suite:
+        if isinstance(item, unittest.TestSuite):
+            yield from flatten(item)
+        else:
+            yield item
+for test in flatten(unittest.defaultTestLoader.discover("tests")):
+    print(test.id())
+''']
+expected_s = 0.1
+tests = 25
+default = true
+graphical = false
+nightly = false
+requires = []
+notes = "Pure-python unit tests using temporary fixtures; no Blender, no network, no display."
+
+[[segment]]
+id = "e2e-batch"
+title = "E2E batch pipeline"
+kind = "test"
+run = ["bash", "tests/e2e.sh"]
+list = ["python3", "-c", "print('tests/e2e.sh')"]
+expected_s = 2.3
+tests = 1
+default = false
+graphical = false
+nightly = false
+requires = ["binary:blender", "network"]
+notes = "Runs the full headless Blender batch pipeline against pinned CC0 assets. Fetches assets only if vendor/bin is not already populated; no window server required."
+
+[[segment]]
+id = "e2e-fit"
+title = "E2E interactive fit hand-off"
+kind = "test"
+run = ["bash", "tests/e2e_fit.sh"]
+list = ["python3", "-c", "print('tests/e2e_fit.sh')"]
+expected_s = 3.1
+tests = 1
+default = false
+graphical = false
+nightly = false
+requires = ["binary:blender", "network"]
+notes = "Generates a fit config and consumes it in the batch pipeline, with two headless Blender runs. Uses cached assets when present; no window server required."
