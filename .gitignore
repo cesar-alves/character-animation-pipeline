@@ -1,5 +1,6 @@
 # Generated binaries and scratch
 out/
+out-e2e/
 work/
 vendor/bin/
 *.blend
