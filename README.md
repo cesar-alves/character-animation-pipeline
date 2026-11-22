@@ -59,7 +59,7 @@ cp out/hero.glb <godot-project>/assets/vendor/characters/hero.glb
 
 # Optional: prepare an interactive fitting session for a character that needs
 # manual bone placement, then save the result as config/fit/<name>.json.
-python3 pipeline.py --fit models/my_character.glb --interactive
+python3 tools/fit.py --model models/my_character.glb --interactive
 ```
 
 V1 accepts GLB input only and exports one GLB per character with all selected
@@ -72,3 +72,20 @@ clips embedded as named actions. The default output keeps M2M bone names; use
 - [`docs/formats.md`](docs/formats.md) — supported formats and what is planned.
 - [`docs/fit-contract.md`](docs/fit-contract.md) — units, bone names, mapping and overrides.
 - [`docs/licensing.md`](docs/licensing.md) — licenses, vendored scope and attribution.
+- [`docs/batch-usage.md`](docs/batch-usage.md) — batch CLI, job schema and root-motion stripping.
+- [`docs/interactive-fit.md`](docs/interactive-fit.md) — Blender fitting panel and fit JSON.
+- [`docs/godot-integration.md`](docs/godot-integration.md) — validator, Drive mirror and bone profile.
+- [`docs/godot-import-check.md`](docs/godot-import-check.md) — clean-project import evidence.
+- [`docs/e2e-run.md`](docs/e2e-run.md) — recorded end-to-end run.
+
+## Tests
+
+The repository uses a declared segment contract (`test-segments.toml`):
+
+```bash
+python3 scripts/testctl.py --verify   # every test belongs to exactly one segment
+bash scripts/test.sh --full           # unit + both E2E segments
+```
+
+Segment ids: `unit`, `e2e-batch`, `e2e-fit`. The E2E segments use the cached
+CC0 assets in `vendor/bin/` and Blender 5.2; no display is required.
