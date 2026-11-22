@@ -2,25 +2,32 @@
   "schema_version": 1,
   "name": "polygon_humanoid",
   "map": {
+    "root": "Root",
     "pelvis": "Hips",
     "spine_01": "Spine_01",
     "spine_02": "Spine_02",
     "spine_03": "Spine_03",
-    "neck_01": "Neck",
-    "head": "Head",
+    "clavicle_l": "Clavicle_L",
+    "clavicle_r": "Clavicle_R",
     "upperarm_l": "Shoulder_L",
     "lowerarm_l": "Elbow_L",
     "hand_l": "Hand_L",
     "upperarm_r": "Shoulder_R",
     "lowerarm_r": "Elbow_R",
     "hand_r": "Hand_R",
+    "neck_01": "Neck",
+    "head": "Head",
+    "head_leaf": "DROP",
     "thigh_l": "UpperLeg_L",
     "calf_l": "LowerLeg_L",
     "foot_l": "Ankle_L",
+    "ball_l": "Ball_L",
+    "ball_leaf_l": "Toes_L",
     "thigh_r": "UpperLeg_R",
     "calf_r": "LowerLeg_R",
     "foot_r": "Ankle_R",
-
+    "ball_r": "Ball_R",
+    "ball_leaf_r": "Toes_R",
     "thumb_01_l": "Thumb_01_L",
     "thumb_02_l": "Thumb_02_L",
     "thumb_03_l": "Thumb_03_L",
@@ -41,7 +48,6 @@
     "pinky_02_l": "DROP",
     "pinky_03_l": "DROP",
     "pinky_04_leaf_l": "DROP",
-
     "thumb_01_r": "Thumb_01_R",
     "thumb_02_r": "Thumb_02_R",
     "thumb_03_r": "Thumb_03_R",
@@ -64,16 +70,9 @@
     "pinky_04_leaf_r": "DROP"
   },
   "synthesize": [
-    {"name": "Root", "rest": true, "rest_offset": [0, 0, 0], "note": "Scene root; zero-length bone at origin."},
-    {"name": "Clavicle_L", "rest": true, "rest_offset": [0, 0, 0], "note": "Authored rest offset between Spine_03 and Shoulder_L."},
-    {"name": "Clavicle_R", "rest": true, "rest_offset": [0, 0, 0], "note": "Authored rest offset between Spine_03 and Shoulder_R."},
-    {"name": "Ball_L", "rest": true, "rest_offset": [0, 0, 0], "note": "Ball of left foot, between Ankle_L and Toes_L."},
-    {"name": "Ball_R", "rest": true, "rest_offset": [0, 0, 0], "note": "Ball of right foot, between Ankle_R and Toes_R."},
-    {"name": "Toes_L", "rest": true, "rest_offset": [0, 0, 0], "note": "Left toe tip; zero-length rest bone."},
-    {"name": "Toes_R", "rest": true, "rest_offset": [0, 0, 0], "note": "Right toe tip; zero-length rest bone."},
     {"name": "Eyes", "rest": true, "rest_offset": [0, 0, 0], "note": "Face helper; zero-length rest bone."},
     {"name": "Eyebrows", "rest": true, "rest_offset": [0, 0, 0], "note": "Face helper; zero-length rest bone."},
     {"name": "Jaw", "rest": true, "rest_offset": [0, 0, 0], "note": "Face helper; zero-length rest bone."}
   ],
-  "notes": "Opt-in map from Mesh2Motion (M2M) source bone names to the frozen 50-bone 'polygon_humanoid' rig in the Godot project. Map keys are the M2M names expected in the exported GLB; map values are the Godot Skeleton3D bone names. A value of DROP means the source chain has no target (thumb_04_leaf, ring_* and pinky_* chains) and is discarded. The 10 bones listed in 'synthesize' have no M2M source and are added at rest in Godot (zero-length or authored rest offset). 40 mapped targets + 10 synthesized bones = the frozen 50-bone rig. Rig conventions: 1 unit = 1 m, Y up, -Z forward, feet at y=0, armature node 'Armature' with a 'Skeleton3D' child, animation track paths 'Armature/Skeleton3D:<bone>', root motion stripped. This profile is used by src.validate --profile to check joint names and by the Godot importer to rename bones."
+  "notes": "Opt-in map from all 66 Mesh2Motion (M2M) source joints to the frozen 50-bone 'polygon_humanoid' rig in the Godot project. The pinned M2M skeleton.glb has 66 joints including root, clavicle_*, ball_* and *_leaf joints; the 58-name HumanChainConfig list is a subset. Map keys are the M2M names expected in the exported GLB; values are Godot Skeleton3D bone names. DROP means the source chain has no target (head_leaf, thumb_04_leaf, ring_* and pinky_* chains) and is discarded; the three face helpers are synthesized at rest. 47 mapped targets + 3 synthesized = the frozen 50-bone rig. Rig conventions: 1 unit = 1 m, Y up, -Z forward, feet at y=0, armature node 'Armature' with a 'Skeleton3D' child, animation track paths 'Armature/Skeleton3D:<bone>', root motion stripped so Root translation stays constant. Used by src.validate --profile and by the optional Godot-side bone rename."
 }
