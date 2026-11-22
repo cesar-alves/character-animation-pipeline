@@ -1,0 +1,18 @@
+# Generated binaries and scratch
+out/
+work/
+vendor/bin/
+*.blend
+*.blend1
+
+# Python
+__pycache__/
+*.pyc
+
+# Local state and reports from experiments
+local/
+
+# Test/CI artifacts
+reports/
+.tools/
+*.log
